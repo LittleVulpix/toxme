@@ -866,12 +866,12 @@ def main():
         (r"/barcode/(.+)\.svg$", CreateQR),
         (r"/u/(.+)?$", LookupAndOpenUser),
         (r"^/$", LookupAndOpenUser),
+        (r"/add_ui", AddKeyWeb),
+        (r"/edit_ui", EditKeyWeb),
         (r'/robots.txt', tornado.web.StaticFileHandler, {'path': robots_path})
     ]
     if cfg["findfriends_enabled"]:
         handlers.append((r"/friends/([0-9]+)$", FindFriends))
-        handlers.append((r"/add_ui", AddKeyWeb))
-        handlers.append((r"/edit_ui", EditKeyWeb))
     app = tornado.web.Application(
         handlers,
         template_path=os.path.join(os.path.dirname(__file__), templates_dir),
